@@ -9,6 +9,7 @@ fn main() {
     let data = data::get_data();
     let result = compute_total(&data);
     println!("{}", result);
+    // This is to make sure that any changes don't affect the answer
     assert_eq!(result, ANSWER)
 }
 
