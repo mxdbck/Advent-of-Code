@@ -106,6 +106,7 @@ fn get_val(char_matrix: &Vec<Vec<char>>, coords: &[i32; 2]) -> u32 {
     num_as_str.parse::<u32>().unwrap()
 }
 
+// This function is used to create a map that gives all numbers that are connected to a symbol
 fn symbol_map(char_matrix: Vec<Vec<char>>) -> HashMap<[i32; 2], HashSet<[i32; 2]>> {
     let mut map: HashMap<[i32; 2], HashSet<[i32; 2]>> = HashMap::new();
     for i in 0..char_matrix.len() {
