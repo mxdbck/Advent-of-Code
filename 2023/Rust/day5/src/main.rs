@@ -16,20 +16,19 @@ fn main() {
 
 fn compute_part1(data: &String) -> i64 {
     let mut maps = data.split("\r\n\r\n");
-    let seeds: Vec<i64> = maps
+    let seeds = maps
         .nth(0)
         .unwrap()
         .split(": ")
         .nth(1)
         .unwrap()
         .split(" ")
-        .map(|x| x.parse::<i64>().unwrap())
-        .collect::<Vec<i64>>();
+        .map(|x| x.parse::<i64>().unwrap());
 
     // This creates an vector whose first index represents
     // each individual map, second index the line of the map
     // and third index the number on the line.
-    let maps2 = maps
+    let maps = maps
         .map(|x| {
             x.split("\r\n")
                 .skip(1)
@@ -42,12 +41,12 @@ fn compute_part1(data: &String) -> i64 {
         })
         .collect::<Vec<Vec<Vec<i64>>>>();
 
-    let mut mininum = i64::MAX;
-    for i in seeds.iter().enumerate() {
-        let result = stop_stupid2(seeds[i.0], &maps2);
-        mininum = mininum.min(result[0]);
+    let mut minimum = i64::MAX;
+    for seed in seeds {
+        let result = seed_location(seed, &maps);
+        minimum = minimum.min(result[0]);
     }
-    mininum
+    minimum
 }
 
 fn compute_part2(data: &String) -> i64 {
@@ -68,7 +67,7 @@ fn compute_part2(data: &String) -> i64 {
     // This creates an vector whose first index represents
     // each individual map, second index the line of the map
     // and third index the number on the line.
-    let maps2 = maps
+    let maps = maps
         .map(|x| {
             x.split("\r\n")
                 .skip(1)
@@ -89,7 +88,7 @@ fn compute_part2(data: &String) -> i64 {
                 skip -= 1;
                 continue;
             } else {
-                result = stop_stupid2(*i.1 + j, &maps2);
+                result = seed_location(*i.1 + j, &maps);
                 mininum = mininum.min(result[0]);
                 skip = result[1];
             }
@@ -98,7 +97,7 @@ fn compute_part2(data: &String) -> i64 {
     mininum
 }
 
-fn stop_stupid2(seed: i64, maps: &Vec<Vec<Vec<i64>>>) -> [i64; 2] {
+fn seed_location(seed: i64, maps: &Vec<Vec<Vec<i64>>>) -> [i64; 2] {
     let mut skip: i64 = i64::MAX;
     let mut var = seed;
     for i in maps {
@@ -112,3 +111,5 @@ fn stop_stupid2(seed: i64, maps: &Vec<Vec<Vec<i64>>>) -> [i64; 2] {
     }
     [var, skip]
 }
+
+
