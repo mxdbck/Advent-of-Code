@@ -21,7 +21,7 @@ fn compute_part1(data: &String) -> u32 {
     let regex = Regex::new(r"\d+").unwrap();
     let nums = regex.find_iter(data).map(|x| {x.as_str().parse::<u32>().unwrap()}).collect::<Vec<u32>>();
     for i in 0..(nums.len()/2) {
-        sum *= (0..(nums[i]+1)).map(|x| {(nums[i + nums.len()/2] < (x*(nums[i]-x))) as u32}).sum::<u32>();
+        sum *= (1..(nums[i])).map(|x| {(nums[i + nums.len()/2] < (x*(nums[i]-x))) as u32}).sum::<u32>();
     }
     sum
 }
@@ -29,7 +29,7 @@ fn compute_part1(data: &String) -> u32 {
 fn compute_part2(data: &String) -> u64 {
     let regex = Regex::new(r"\d+").unwrap();
     let nums = regex.find_iter(data.replace(" ", "").as_str()).map(|x| {x.as_str().parse::<u64>().unwrap()}).collect::<Vec<u64>>();
-    (0..(nums[0]+1)).map(|x| {(nums[1] < (x*(nums[0]-x))) as u64}).sum::<u64>()
+    (1..(nums[0])).map(|x| {(nums[1] < (x*(nums[0]-x))) as u64}).sum::<u64>()
 }
 
 
