@@ -88,12 +88,3 @@ fn parse_input_shit(line: &str) -> u32 {
     }
     first.parse::<u32>().unwrap()*10 + last.parse::<u32>().unwrap()
 }
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
-}
