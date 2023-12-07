@@ -37,7 +37,7 @@ fn compute_part(data: &String, part1: bool) -> u32 {
         let mut split = line.split(" ");
         let hand = split.next().unwrap();
         let value = split.next().unwrap().parse::<u32>().unwrap();
-        map.entry(hand_type3(hand, part1))
+        map.entry(hand_type(hand, part1))
             .and_modify(|v| v.push([LineData::Hand(hand.to_string()), LineData::Value(value)]))
             .or_insert(vec![[
                 LineData::Hand(hand.to_string()),
@@ -94,7 +94,7 @@ fn hand_comparator(a: &[LineData; 2], b: &[LineData; 2], part1: bool) -> std::cm
     panic!("Hands are equal");
 }
 
-fn hand_type3(hand: &str, part1: bool) -> u32 {
+fn hand_type(hand: &str, part1: bool) -> u32 {
     let mut map: HashMap<&str, u32> = HashMap::new();
 
     if part1 {
