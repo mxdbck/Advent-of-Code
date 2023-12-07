@@ -17,7 +17,7 @@ fn compute_total(data: &String) -> u32{
     let lines = data.split("\r\n");
     let mut total = 0;
     for i in lines {
-        total += parse_input_shit(&i);
+        total += parse_input(&i);
     }
     total
 }
@@ -38,7 +38,7 @@ fn str_to_u32(s: &str) -> u32 {
     }
 }
 
-fn parse_input_shit(line: &str) -> u32 {
+fn parse_input(line: &str) -> u32 {
     let mut literal_number_set: HashSet<usize> = HashSet::new();
     for i in NUMBERS{
         for j in 0..line.len() {
