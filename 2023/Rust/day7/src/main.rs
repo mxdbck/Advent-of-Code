@@ -126,7 +126,8 @@ fn hand_type(hand: &str, part1: bool) -> u32 {
         }
     }
 
-    // We can use the sum of the squares of the values to determine the hand type
+    // We can use the sum of the squares of the number 
+    // of cards of each type to determine the hand
     match map.values().map(|x| x.pow(2)).sum() {
         25 => 6, // "five of a kind",
         17 => 5, // "four of a kind",
