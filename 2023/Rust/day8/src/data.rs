@@ -8,6 +8,7 @@ pub fn get_data() -> String {
     data
 }
 
+#[allow(unused)]
 pub fn make_newlines_visible(s: &str) -> String {
     s.chars()
         .map(|c| match c {
